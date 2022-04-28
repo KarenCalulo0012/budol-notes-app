@@ -5,9 +5,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -19,11 +25,22 @@ import com.appscals.mybudolchecklistapp.presentation.displayItem.DisplayItemScre
 fun MainScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     Scaffold(
-        topBar = { AppToolBar("MY BUDOL LIST") }
+        topBar = { AppToolBar("MY BUDOL LIST") },
+        floatingActionButton = { ItemFAB(navController) }
     ) {
         PageCoverPhoto()
         DisplayItemScreen(scrollState)
     }
+}
+
+@Composable
+fun ItemFAB(navController: NavController) {
+    FloatingActionButton(
+        onClick = { navController.navigate("addItem") },
+        backgroundColor = MaterialTheme.colors.primary,
+        content = {
+            Icon(imageVector = Icons.Rounded.Add, contentDescription = "", tint = Color.White)
+        })
 }
 
 @Composable
