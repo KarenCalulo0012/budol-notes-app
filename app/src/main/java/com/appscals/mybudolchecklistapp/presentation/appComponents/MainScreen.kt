@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.requiredHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,14 +13,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.appscals.mybudolchecklistapp.R
+import com.appscals.mybudolchecklistapp.presentation.displayItem.DisplayItemScreen
 
 @Composable
 fun MainScreen(navController: NavController) {
-
+    val scrollState = rememberScrollState()
     Scaffold(
         topBar = { AppToolBar("MY BUDOL LIST") }
     ) {
         PageCoverPhoto()
+        DisplayItemScreen(scrollState)
     }
 }
 
