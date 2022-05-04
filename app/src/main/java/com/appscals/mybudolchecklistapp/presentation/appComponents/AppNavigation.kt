@@ -10,13 +10,13 @@ import com.appscals.mybudolchecklistapp.presentation.addItem.AddItemScreen
 fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "splash_screen") {
-        composable("splash_screen") {
+        composable(AppScreen.SplashScreen.route) {
             SplashScreenAnimate(navController)
         }
-        composable("main_screen") {
+        composable(AppScreen.MainScreen.route) {
             MainScreen(navController)
         }
-        composable("addItem") {
+        composable(AppScreen.AddItemScreen.route) {
             AddItemScreen()
         }
 
