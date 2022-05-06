@@ -25,8 +25,8 @@ import com.appscals.mybudolchecklistapp.presentation.displayItem.DisplayItemScre
 fun MainScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     Scaffold(
-        topBar = { AppToolBar("MY BUDOL LIST") },
-        floatingActionButton = { ItemFAB(navController) }
+        topBar = { AppToolBar("MY ITEM LIST") },
+        floatingActionButton = { ItemFAB() { navController.navigate(AppScreen.AddItemScreen.route) } }
     ) {
         PageCoverPhoto()
         DisplayItemScreen(scrollState)
@@ -34,9 +34,9 @@ fun MainScreen(navController: NavController) {
 }
 
 @Composable
-fun ItemFAB(navController: NavController) {
+fun ItemFAB(onFabClicked: () -> Unit) {
     FloatingActionButton(
-        onClick = { navController.navigate("addItem") },
+        onClick = onFabClicked,
         backgroundColor = MaterialTheme.colors.primary,
         content = {
             Icon(imageVector = Icons.Rounded.Add, contentDescription = "", tint = Color.White)

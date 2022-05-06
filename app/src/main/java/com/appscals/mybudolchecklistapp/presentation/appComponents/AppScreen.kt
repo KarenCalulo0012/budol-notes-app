@@ -3,5 +3,9 @@ package com.appscals.mybudolchecklistapp.presentation.appComponents
 sealed class AppScreen(val route: String) {
     object SplashScreen : AppScreen("splash_screen")
     object MainScreen : AppScreen("main_screen")
-    object AddItemScreen : AppScreen("addItem")
+    object AddItemScreen : AppScreen("edit?itemId={itemId}") {
+        fun passId(itemId: Int?): String {
+            return "edit?itemId=$itemId"
+        }
+    }
 }

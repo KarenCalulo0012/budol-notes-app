@@ -20,11 +20,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.appscals.mybudolchecklistapp.R
-import com.appscals.mybudolchecklistapp.model.Items
+import com.appscals.mybudolchecklistapp.domain.model.Item
 import java.util.*
 
 @Composable
-fun ItemList(item: Items) {
+fun ItemList(item: Item) {
     val uriHandler = LocalUriHandler.current
     Card(
         modifier = Modifier
@@ -79,7 +79,7 @@ fun ItemList(item: Items) {
                         }
                     }
                     Text(text = "₱${item.price}", fontSize = 14.sp, fontWeight = FontWeight.Light)
-                    ReviewBar(liked = item.rating)
+//                    ReviewBar(liked = item.rating)
                 }
             }
         }
