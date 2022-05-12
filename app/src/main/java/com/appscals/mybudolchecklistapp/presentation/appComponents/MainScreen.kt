@@ -17,19 +17,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.appscals.mybudolchecklistapp.R
 import com.appscals.mybudolchecklistapp.presentation.displayItem.DisplayItemScreen
+import com.appscals.mybudolchecklistapp.presentation.itemVM.ItemViewModel
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun MainScreen(navController: NavController, viewModel: ItemViewModel = hiltViewModel()) {
+    val state = viewModel.state.value
     val scrollState = rememberScrollState()
     Scaffold(
         topBar = { AppToolBar("MY ITEM LIST") },
         floatingActionButton = { ItemFAB() { navController.navigate(AppScreen.AddItemScreen.route) } }
     ) {
         PageCoverPhoto()
-        DisplayItemScreen(scrollState)
+        DisplayItemScreen(
+            scrollState,
+            onEditItem = { id -> navController.navigate(AppScreen.AddItemScreen.passId(id)) },
+            itemList = state.items
+        )
     }
 }
 

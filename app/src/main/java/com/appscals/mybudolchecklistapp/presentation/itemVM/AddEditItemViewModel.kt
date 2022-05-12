@@ -45,7 +45,7 @@ class AddEditItemViewModel
     private var currentItemId: Int? = null
 
     init {
-        savedStateHandle.get<Int>("itemId")?.let { id ->
+        savedStateHandle.get<Int>("itemID")?.let { id ->
             if (id != -1) {
                 insertItem(id)
             }

@@ -12,15 +12,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.appscals.mybudolchecklistapp.presentation.itemVM.ItemViewModel
+import com.appscals.mybudolchecklistapp.domain.model.Item
 
 @Composable
 fun DisplayItemScreen(
     scrollState: ScrollState,
-    viewModel: ItemViewModel = hiltViewModel()
+    onEditItem: (id: Int?) -> Unit,
+    itemList: List<Item> = emptyList()
 ) {
-    val state = viewModel.state.value
 
     Column(
         Modifier
@@ -32,8 +31,10 @@ fun DisplayItemScreen(
                 .fillMaxWidth()
                 .scrollable(scrollState, Orientation.Vertical)
         ) {
-            items(state.items) { data ->
-                ItemList(item = data)
+            items(itemList) { data ->
+                ItemList(
+                    item = data,
+                    onEditItem = { onEditItem(data.id) })
             }
         }
     }
